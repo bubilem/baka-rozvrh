@@ -1,0 +1,103 @@
+table.timetable {
+  width: 100%;
+  height: 100vh;
+  tr {
+    td {
+      &.datetime {
+        width: 10em;
+        background: #222;
+        #date {
+          font-size: 2em;
+          padding: 0.1em;
+          color: #eae;
+        }
+        #time {
+          font-size: 2em;
+          padding: 0.1em;
+          color: #aae;
+        }
+      }
+      border: 1px #666 solid;
+      text-align: center;
+      vertical-align: middle;
+      &.hour {
+        height: 1px;
+        .number {
+          font-size: 2.2em;
+          font-weight: 600;
+          padding: 0.1em;
+        }
+        .fromto {
+          font-size: 1.5em;
+          font-weight: 400;
+          display: flex;
+          flex-direction: row;
+          flex-wrap: nowrap;
+          justify-content: space-around;
+          padding: 0 0 0.2em 0;
+        }
+      }
+      &.class {
+        font-size: 3em;
+        font-weight: 600;
+        padding: 0.2em;
+      }
+      &.lessons {
+        background: #222;
+        .lesson {
+          display: flex;
+          flex-direction: column;
+          align-items: stretch;
+          align-content: stretch;
+          padding: 0.2em;
+          position: relative;
+          .subject {
+            font-size: 2.1em;
+            font-weight: 600;
+            padding-bottom: 0.1em;
+            letter-spacing: 0.08em;
+            sup {
+              font-size: 0.5em;
+              font-weight: 400;
+              letter-spacing: 0;
+              position: relative;
+              top: -1em;
+              left: 0.3em;
+              color: #999;
+            }
+          }
+          .teacher-room {
+            font-size: 1.4em;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            :nth-child(1) {
+              color: #eae;
+            }
+            :nth-child(2) {
+              color: #aae;
+            }
+          }
+          &:nth-child(n + 2) {
+            border-top: 1px solid #333;
+          }
+        }
+      }
+      &:empty {
+        background: #111;
+      }
+      &.in-progress {
+        background: #132;
+        &:empty {
+          background: #111911;
+        }
+      }
+      &.preparation {
+        background: #332;
+        &:empty {
+          background: #191911;
+        }
+      }
+    }
+  }
+}

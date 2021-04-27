@@ -1,0 +1,79 @@
+{
+  "section": {
+    "marvdf": {
+      "baka-url": "***",
+      "baka-user": "***",
+      "baka-pass": "***",
+      "classes": ["4IT", "3IT", "2IT", "1IT", "1ITE", "4G", "3G", "2PGD", "1PGD"]
+    },
+    "vosvdf": {
+      "baka-url": "***",
+      "baka-user": "***",
+      "baka-pass": "***",
+      "classes": ["VS3", "V2B", "V2A", "V1C", "V1A", "V1B", "V1D", "V1F"]
+    },
+    "karvdf": {
+      "baka-url": "***",
+      "baka-user": "***",
+      "baka-pass": "***",
+      "classes": ["4MSE", "3ATE", "3OZ", "3MSE", "2ATE", "2OZ", "2MSE", "1MSE", "1AE", "1OZ", "1T"]
+    },
+    "bravdf": {
+      "baka-url": "***",
+      "baka-user": "***",
+      "baka-pass": "***",
+      "classes": [
+        "4.SM",
+        "4.BM",
+        "4.CR",
+        "3.BC",
+        "3.MO",
+        "3.KV",
+        "3.KM",
+        "3.PZ",
+        "3.UA",
+        "3.UB",
+        "3.ZA",
+        "2.BC",
+        "2.MO",
+        "2.SM",
+        "2.KA",
+        "2.PA",
+        "2.KV",
+        "2.UA",
+        "2.ZA",
+        "2.PS",
+        "2.ZP",
+        "1.BM",
+        "1.CH",
+        "1.PA",
+        "1.KA",
+        "1.KC",
+        "1.RV",
+        "1.PZ",
+        "1.UA",
+        "1.ZA",
+        "1.ZB"
+      ]
+    }
+  },
+  "baka-url-actual-timetable": "timetable/actual/classes",
+  "baka-url-permanent-timetable": "timetable/permanent/classes",
+  "hours": [
+    ["07:15", "08:00"],
+    ["08:05", "08:50"],
+    ["09:00", "09:45"],
+    ["10:05", "10:50"],
+    ["11:00", "11:45"],
+    ["11:55", "12:40"],
+    ["12:45", "13:30"],
+    ["13:35", "14:20"],
+    ["14:25", "15:10"],
+    ["15:15", "16:00"],
+    ["16:05", "16:50"],
+    ["16:55", "17:40"],
+    ["17:45", "18:30"],
+    ["19:10", "19:55"],
+    ["20:05", "20:50"]
+  ]
+}

@@ -1,0 +1,8 @@
+# zakaz pristupu k listingu adresaru
+Options -Indexes 
+
+# zakaz pristupu k json souborum
+<Files ~ "^conf\.json$">
+   order deny,allow
+   deny from all
+</Files>
