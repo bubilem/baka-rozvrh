@@ -67,12 +67,11 @@ class Parser
         }
         $days = ['PON', 'ÚTE', 'STŘ', 'ČTV', 'PÁT'];
         $weeks = ['S' => 'SUDÝ', 'L' => 'LICHÝ'];
-        $actHour = self::actualHour();
         $html = '';
         $html .= '<tr>';
         $html .= '<td class="datetime"><div id="date">' . $days[$arr['day']] .  (isset($weeks[$arr['week']]) ? '&nbsp;' . $weeks[$arr['week']] : '') . '</div><div id="time"></div></td>';
         for ($hour = $arr['min-hour']; $hour <= $arr['max-hour']; $hour++) {
-            $html .= '<td class="hour' . ($actHour['number'] == $hour ? ' ' . $actHour['state'] : '') . '">';
+            $html .= '<td class="hour hour-' . $hour . '">';
             $html .= '<div class="number">' . $hour . '</div>';
             $fromto = Conf::get("hours", $hour);
             $html .= '<div class="fromto"><div>' . $fromto[0] . '</div><div>-</div><div>' . $fromto[1] . '</div></div>';
@@ -84,7 +83,7 @@ class Parser
             $html .= '<tr>';
             $html .= '<td class="class">' . $class . '</td>';
             for ($hour = $arr['min-hour']; $hour <= $arr['max-hour']; $hour++) {
-                $html .= '<td class="lessons' . ($actHour['number'] == $hour ? ' ' . $actHour['state'] : '') . '">';
+                $html .= '<td class="lessons hour-' . $hour . '">';
                 if (!empty($item[$hour])) {
                     foreach ($item[$hour] as $lesson) {
                         $html .= '<div class="lesson">' .
@@ -97,38 +96,6 @@ class Parser
             }
             $html .= '</tr>' . "\n";
         }
-        return '<table class="timetable">' . "\n" . $html . '</table>' . "\n";
-    }
-
-    /**
-     * Detect number of actual hour
-     *
-     * @return array ['number' => 0, 'state' => 'in-progress']
-     */
-    public static function actualHour(): array
-    {
-        $actualHour = ['number' => 0, 'state' => 'in-progress'];
-        $hours = Conf::get('hours');
-        foreach ($hours as $hour => $fromto) {
-            if (self::minutes(date("H:i")) >= self::minutes($fromto[1])) {
-                $actualHour['number'] = $hour + 1;
-            }
-        }
-        if (self::minutes(date("H:i")) < self::minutes($hours[$actualHour['number']][0])) {
-            $actualHour['state'] = 'preparation';
-        }
-        return $actualHour;
-    }
-
-    /**
-     * convert time HH:MM to minutes count.
-     *
-     * @param string $time
-     * @return int
-     */
-    public static function minutes(string $time): int
-    {
-        $hoursAndMinutes = explode(":", $time);
-        return (intval($hoursAndMinutes[0]) * 60) + intval($hoursAndMinutes[1]);
+        return '<table id="timetable" class="timetable">' . "\n" . $html . '</table>' . "\n";
     }
 }

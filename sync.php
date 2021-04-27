@@ -34,7 +34,7 @@ if ($log->xmlTime() + xmlUpdateSecInterval() > time()) {
     /* SYNC */
     $log->status("bussy")->save(); // BUSSY TIME
     $result = Loader::baka2xml($log, $timetableType); // XML LOADING
-    if ($result == 'saved' || $log->jsonTime() + 120 < time()) {
+    if ($result == 'saved' || $log->jsonTime() + 3600 < time()) {
         $json = Parser::xml2json(); // JSON GENERATING IF NEEDED
         if (!empty($json) && file_put_contents('data/' . Conf::section() . '-timetable.json', $json)) {
             /* NEW JSON GENERATED */
@@ -55,29 +55,17 @@ function messAndDie(string $status, SyncLog $log = null)
     die(json_encode($data));
 }
 
-function getLastPoi(): string
-{
-    foreach (Conf::get('hours') as $hour => $fromto) {
-        /*
-        if (date("H:i") >= $fromto[1])) {
-            
-        }
-        */
-    }
-    return "";
-}
-
 function xmlUpdateSecInterval(): int
 {
     $weekDay = intval(date("w"));
     if ($weekDay >= 1 && $weekDay <= 5) {
         $hour = intval(date("G"));
         if ($hour > 7 && $hour <= 10) {
-            return 300;
+            return 300; // 5 minutes
         } else if ($hour > 10 && $hour <= 14) {
-            return 900;
+            return 900; // 15 minutes
         }
-        return 3600;
+        return 3600; // 1 hour
     }
-    return 60; //7200;
+    return 7200; // 2 hours
 }

@@ -27,5 +27,5 @@ $(document).ready(function () {
     });
   }
   ajaxSync();
-  setInterval(ajaxSync, 5000);
+  setInterval(ajaxSync, 60000);
 });
