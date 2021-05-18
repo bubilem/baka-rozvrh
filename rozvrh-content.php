@@ -32,17 +32,17 @@ if (Conf::section()) {
             var actualHour = -1;
             var hour = 0;
             for (const startstop of hours) {
-                if (startstop[0] <= actualTime && actualTime <= startstop[1]) {
+                if (startstop[0] <= actualTime && actualTime < startstop[1]) {
                     actualHour = hour;
                     break;
                 }
                 hour++;
             }
             if (lastActualHour != actualHour) {
+                for (let td of document.getElementsByClassName("hour")) {
+                    td.classList.remove("in-progress");
+                }
                 if (actualHour != -1) {
-                    for (let td of document.getElementsByClassName("hour")) {
-                        td.classList.remove("in-progress");
-                    }
                     for (let td of document.getElementsByClassName("hour-" + actualHour)) {
                         td.classList.add("in-progress");
                     }
