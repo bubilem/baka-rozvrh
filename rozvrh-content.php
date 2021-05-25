@@ -42,6 +42,9 @@ if (Conf::section()) {
                 for (let td of document.getElementsByClassName("hour")) {
                     td.classList.remove("in-progress");
                 }
+                for (let td of document.getElementsByClassName("lessons")) {
+                    td.classList.remove("in-progress");
+                }
                 if (actualHour != -1) {
                     for (let td of document.getElementsByClassName("hour-" + actualHour)) {
                         td.classList.add("in-progress");
