@@ -79,6 +79,9 @@ class Parser
         }
         $html .= '</tr>' . "\n";
         foreach (Conf::get('classes') as $class) {
+            if(empty($arr['classes'][$class])){
+                continue;
+            }
             $item = $arr['classes'][$class];
             $html .= '<tr>';
             $html .= '<td class="class">' . $class . '</td>';

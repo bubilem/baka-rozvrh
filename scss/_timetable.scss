@@ -87,9 +87,11 @@ table.timetable {
         background: #111;
       }
       &.in-progress {
-        background: #132;
+        background: #222;
+        border-color: #666;
+        filter: invert(100%);
         &:empty {
-          background: #111911;
+          background: #bbb;
         }
       }
       &.preparation {
