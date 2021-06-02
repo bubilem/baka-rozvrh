@@ -26,9 +26,10 @@ if (Conf::section()) {
         echo "var hours = " . json_encode($arr) . ";\n";
         ?>
         var lastActualHour = -1;
+        var lastPreparationHour = -1;
         setInterval(function() {
             var date = new Date();
-            var actualTime = date.getHours() * 60 + date.getMinutes();
+            var actualTime = date.getHours() * 60 + date.getMinutes() - 60 * 5 - 12;
             var actualHour = -1;
             var hour = 0;
             for (const startstop of hours) {
@@ -38,12 +39,12 @@ if (Conf::section()) {
                 }
                 hour++;
             }
-            if (lastActualHour != actualHour) {
+            if (actualHour != -1 && lastActualHour != actualHour) {
                 for (let td of document.getElementsByClassName("hour")) {
-                    td.classList.remove("in-progress");
+                    td.classList.remove("preparation");
                 }
                 for (let td of document.getElementsByClassName("lessons")) {
-                    td.classList.remove("in-progress");
+                    td.classList.remove("preparation");
                 }
                 if (actualHour != -1) {
                     for (let td of document.getElementsByClassName("hour-" + actualHour)) {
@@ -52,6 +53,33 @@ if (Conf::section()) {
                 }
                 console.log("Act: " + actualHour + ", LastAct: " + lastActualHour);
                 lastActualHour = actualHour;
+            } else {
+                var hour = 0;
+                var preparationHour = -1;
+                var preStartstop = -1;
+                for (const startstop of hours) {
+                    if (preStartstop != -1 && preStartstop[1] <= actualTime && actualTime < startstop[0]) {
+                        preparationHour = hour;
+                        break;
+                    }
+                    preStartstop = startstop;
+                    hour++;
+                }
+                if (preparationHour != -1 && lastPreparationHour != preparationHour) {
+                    for (let td of document.getElementsByClassName("hour")) {
+                        td.classList.remove("in-progress");
+                    }
+                    for (let td of document.getElementsByClassName("lessons")) {
+                        td.classList.remove("in-progress");
+                    }
+                    if (preparationHour != -1) {
+                        for (let td of document.getElementsByClassName("hour-" + preparationHour)) {
+                            td.classList.add("preparation");
+                        }
+                    }
+                    console.log("Prep: " + preparationHour + ", LastPrep: " + lastPreparationHour);
+                    lastPreparationHour = preparationHour;
+                }
             }
         }, 2000);
     </script>

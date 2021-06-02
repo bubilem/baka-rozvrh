@@ -87,7 +87,7 @@ table.timetable {
         background: #111;
       }
       &.in-progress {
-        background: #222;
+        background: #111;
         border-color: #666;
         filter: invert(100%);
         &:empty {
@@ -95,10 +95,7 @@ table.timetable {
         }
       }
       &.preparation {
-        background: #332;
-        &:empty {
-          background: #191911;
-        }
+        border-left: 5px #fff solid;
       }
     }
   }
