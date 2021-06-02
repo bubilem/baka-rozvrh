@@ -29,7 +29,7 @@ if (Conf::section()) {
         var lastPreparationHour = -1;
         setInterval(function() {
             var date = new Date();
-            var actualTime = date.getHours() * 60 + date.getMinutes() - 60 * 5 - 12;
+            var actualTime = date.getHours() * 60 + date.getMinutes();
             var actualHour = -1;
             var hour = 0;
             for (const startstop of hours) {
